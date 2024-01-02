@@ -1,0 +1,10 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+.btn-submit {
+    @apply p-3 mt-8 shadow-lg rounded-full;
+}
+.btn-submit:hover {
+    @apply bg-[#20293A];
+}
