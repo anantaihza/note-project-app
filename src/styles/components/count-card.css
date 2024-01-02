@@ -1,0 +1,14 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+
+.card-count {
+    @apply w-[200px] px-8 py-3 rounded-lg;
+}
+.active {
+    @apply bg-[#219BFF];
+}
+.not-active {
+    @apply border-l-8 border-[#219BFF] bg-[#20293A];
+}

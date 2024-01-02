@@ -1,0 +1,13 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+    font-family: 'Poppins', sans-serif;
+}
+.base-container {
+    @apply max-w-md md:max-w-3xl lg:max-w-4xl xl:max-w-screen-xl mx-auto;
+}
+.bg-acrylic {
+    @apply bg-white backdrop-filter backdrop-blur-lg bg-opacity-30;
+}

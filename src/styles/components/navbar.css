@@ -1,0 +1,7 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+.fixed-top {
+    @apply fixed top-0 right-0 left-0 z-10;
+}
