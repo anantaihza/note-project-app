@@ -29,7 +29,7 @@ export default function FormLogin({ onRegister }) {
     setPasswordConfirm(event.target.value);
   };
 
-  const onFormSubmitHandler = async (event) => {
+  const onFormSubmitHandler = (event) => {
     event.preventDefault();
     if (password !== passwordConfirm) {
       alert("Password tidak sama");

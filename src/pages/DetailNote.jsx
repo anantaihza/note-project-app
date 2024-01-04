@@ -8,12 +8,13 @@ import {
   searchIdNotes,
 } from "../utils/local-data";
 
+import PropTypes from "prop-types";
 import Navbar from "../components/Navbar";
 import Decoration from "../components/Decoration";
 import ButtonList from "../components/Details/ButtonList";
 import ContentDetail from "../components/Details/ContentDetail";
 
-export default function DetailNote() {
+export default function DetailNote({ logout }) {
   const { id } = useParams();
   const navigate = useNavigate();
   const isIdExist = searchIdNotes(id);
@@ -47,7 +48,7 @@ export default function DetailNote() {
 
   return (
     <>
-      <Navbar />
+      <Navbar logout={logout} />
       <div className="relative overflow-hidden min-h-screen">
         <div className="flex justify-center items-center min-h-screen">
           <ContentDetail note={note} />
@@ -64,4 +65,8 @@ export default function DetailNote() {
       </div>
     </>
   );
+}
+
+DetailNote.propTypes = {
+  logout: PropTypes.func.isRequired,
 }

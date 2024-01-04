@@ -1,10 +1,11 @@
 import Navbar from "../components/Navbar";
 import Decoration from "../components/Decoration";
+import PropTypes from "prop-types";
 
-export default function NotFound() {
+export default function NotFound({ logout }) {
   return (
     <>
-      <Navbar />
+      <Navbar logout={logout} />
       <div className="relative overflow-hidden min-h-screen">
         <div className="base-container flex flex-col gap-5 justify-center items-center h-screen">
           <img
@@ -19,4 +20,8 @@ export default function NotFound() {
       </div>
     </>
   );
+}
+
+NotFound.propTypes = {
+  logout: PropTypes.func.isRequired,
 }
