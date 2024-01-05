@@ -1,11 +1,10 @@
 import { useState } from "react";
-import { addNote } from "../utils/local-data";
 import PropTypes from "prop-types";
 import "../styles/components/form-add.css";
 
-export default function FormAdd({ onSubmitClose }) {
+export default function FormAdd({ onAddSubmit }) {
   const [title, setTitle] = useState("");
-  const [body, setBody] = useState("");
+  const [body, setBody] = useState("Apa yang kamu fikirkan?");
 
   const onTitleChangeHandler = (event) => {
     setTitle(event.target.value);
@@ -17,11 +16,13 @@ export default function FormAdd({ onSubmitClose }) {
 
   const onFormSubmitHandler = (event) => {
     event.preventDefault();
-    addNote({ title, body });
-    setTitle("");
-    setBody("");
-    onSubmitClose();
+    if (body === "Apa yang kamu fikirkan?") {
+      onAddSubmit({ title, body: "(Tidak ada catatan)" });
+    } else {
+      onAddSubmit({ title, body });
+    }
   }
+
 
   return (
     <div className="base-container flex justify-center items-center min-h-screen">
@@ -37,10 +38,9 @@ export default function FormAdd({ onSubmitClose }) {
         <div
           className="outline-none text-xl border-0 border-gray-400 focus:border-[#219BFF] focus:border-2 focus:text-black rounded-lg p-4 h-96 overflow-y-auto"
           contentEditable="true"
-          onInput={onBodyChangeHandler}
-        >
-          Apa yang ingin kamu tulis?
-        </div>
+          dangerouslySetInnerHTML={{ __html: body }}
+          onBlur={onBodyChangeHandler}
+        />
         <br />
 
         <div className="base-container relative">
@@ -74,5 +74,5 @@ export default function FormAdd({ onSubmitClose }) {
 }
 
 FormAdd.propTypes = {
-  onSubmitClose: PropTypes.func.isRequired
+  onAddSubmit: PropTypes.func.isRequired
 }

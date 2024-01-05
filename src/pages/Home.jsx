@@ -1,10 +1,7 @@
 import { useState } from "react";
 import { useSearchParams } from "react-router-dom";
-import {
-  getActiveNotes,
-  getArchivedNotes,
-  searchTitleNotes,
-} from "../utils/local-data";
+import useNotes from "../hooks/useNotes";
+import { searchTitleNotes } from "../utils/search";
 
 import PropTypes from "prop-types";
 import Navbar from "../components/Navbar";
@@ -13,8 +10,9 @@ import Decoration from "../components/Decoration";
 import ListCard from "../components/Card/ListCard";
 import TitleNote from "../components/Title/TitleNote";
 import Summary from "../components/SummaryCount/Summary";
+import TitleUser from "../components/Title/TitleUser";
 
-export default function Home({ logout }) {
+export default function Home({ username ,logout }) {
   const [searchParam, setSearchParam] = useSearchParams();
 
   const title = searchParam.get("title");
@@ -24,21 +22,19 @@ export default function Home({ logout }) {
   };
 
   const [search, setSearch] = useState(title || "");
-  const activeNotes = getActiveNotes();
-  const archivedNotes = getArchivedNotes();
-  const countActive = activeNotes.length;
-  const countArchived = archivedNotes.length;
 
+  const { activeNotes, activeCount, archiveCount } = useNotes();
   const searchResult = searchTitleNotes(search, activeNotes);
 
   return (
     <>
       <Navbar logout={logout} />
       <div className="relative overflow-hidden min-h-screen pt-12">
+        <TitleUser name={username} />
         <Summary
           activeCard="aktif"
-          countActive={countActive}
-          countArchived={countArchived}
+          countActive={activeCount}
+          countArchived={archiveCount}
         />
         <TitleNote statusNote="aktif" />
         <Search setSearch={setSearch} onParam={changeSearchParam} />
@@ -52,5 +48,6 @@ export default function Home({ logout }) {
 }
 
 Home.propTypes = {
+  username: PropTypes.string.isRequired,
   logout: PropTypes.func.isRequired,
 }

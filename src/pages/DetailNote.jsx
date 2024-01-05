@@ -1,12 +1,10 @@
-import { useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import {
-  getNote,
-  archiveNote,
   deleteNote,
+  archiveNote,
   unarchiveNote,
-  searchIdNotes,
-} from "../utils/local-data";
+} from "../utils/network-data";
+import useNoteById from "../hooks/useNoteById";
 
 import PropTypes from "prop-types";
 import Navbar from "../components/Navbar";
@@ -17,18 +15,8 @@ import ContentDetail from "../components/Details/ContentDetail";
 export default function DetailNote({ logout }) {
   const { id } = useParams();
   const navigate = useNavigate();
-  const isIdExist = searchIdNotes(id);
+  const { note } = useNoteById(id);
 
-  // Jika id tidak ditemukan
-  useEffect(() => {
-    if (!isIdExist) {
-      navigate("/404");
-    }
-  }, [isIdExist, navigate]);
-
-  if (!isIdExist) return null;
-
-  const note = getNote(id);
   const typeButton = note.archived ? "arsip" : "aktif";
 
   const handleDelete = () => {
@@ -69,4 +57,4 @@ export default function DetailNote({ logout }) {
 
 DetailNote.propTypes = {
   logout: PropTypes.func.isRequired,
-}
+};
