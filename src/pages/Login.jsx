@@ -1,5 +1,6 @@
 import Decoration from "../components/Decoration";
 import FormLogin from "../components/FormLogin";
+import Navigations from "../components/Navigations";
 import { login } from "../utils/network-data";
 import PropTypes from "prop-types";
 
@@ -8,17 +9,18 @@ import { useNavigate } from "react-router-dom";
 export default function Login({ loginSuccess }) {
   const navigate = useNavigate();
 
-    const onLoginHandler = async (user) => {
-      const { error, data } = await login(user)
+  const onLoginHandler = async (user) => {
+    const { error, data } = await login(user);
 
-      if (!error) {
-        loginSuccess(data)
-      }
-      navigate("/")
+    if (!error) {
+      loginSuccess(data);
     }
+    navigate("/");
+  };
 
   return (
     <div className="relative overflow-hidden min-h-screen">
+      <Navigations />
       <div className="base-container flex">
         <img
           src="/login.svg"
@@ -36,4 +38,4 @@ export default function Login({ loginSuccess }) {
 
 Login.propTypes = {
   loginSuccess: PropTypes.func.isRequired,
-}
+};

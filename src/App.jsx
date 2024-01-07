@@ -9,10 +9,17 @@ import NotFound from "./pages/NotFound";
 import Register from "./pages/Register";
 import DetailNote from "./pages/DetailNote";
 import useFetchUser from "./hooks/useFetchUser";
+import { useEffect } from "react";
+import { useTheme } from "./contexts/ThemeContext";
 
 function App() {
+  const { theme } = useTheme();
   const { authedUser, updateAuthedUser, initialized, fetchUserLogged } =
     useFetchUser();
+
+  useEffect(() => {
+    document.documentElement.setAttribute("data-theme", theme);
+  }, [theme]);
 
   const onLoginSuccess = async ({ accessToken }) => {
     putAccessToken(accessToken);

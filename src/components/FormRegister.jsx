@@ -6,12 +6,14 @@ import { FaRegAddressCard } from "react-icons/fa";
 import { MdPassword } from "react-icons/md";
 import InputField from "./InputField";
 import ButtonSubmit from "./ButtonSubmit";
+import { useTheme } from "../contexts/ThemeContext";
 
-export default function FormLogin({ onRegister }) {
+export default function FormRegister({ onRegister }) {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [passwordConfirm, setPasswordConfirm] = useState("");
+  const { theme } = useTheme();
 
   const onNameChange = (event) => {
     setName(event.target.value);
@@ -40,7 +42,7 @@ export default function FormLogin({ onRegister }) {
 
   return (
     <>
-      <div className=" flex flex-col justify-center items-stretch min-h-screen w-full sm:px-4 md:pl-14 xl:pl-36">
+      <div className={`flex flex-col justify-center items-stretch min-h-screen w-full sm:px-4 md:pl-14 xl:pl-36 ${theme}-text`}>
         <h1 className="text-5xl font-bold mb-20 text-center">
           {" "}
           Registrasi
@@ -87,6 +89,6 @@ export default function FormLogin({ onRegister }) {
   );
 }
 
-FormLogin.propTypes = {
+FormRegister.propTypes = {
   onRegister: PropTypes.func.isRequired,
 };

@@ -1,18 +1,20 @@
 import { useState } from "react";
 import PropTypes from "prop-types";
 import "../styles/components/form-add.css";
+import { useTheme } from "../contexts/ThemeContext";
 
 export default function FormAdd({ onAddSubmit }) {
   const [title, setTitle] = useState("");
   const [body, setBody] = useState("Apa yang kamu fikirkan?");
+  const { theme } = useTheme();
 
   const onTitleChangeHandler = (event) => {
     setTitle(event.target.value);
-  }
+  };
 
   const onBodyChangeHandler = (event) => {
     setBody(event.target.innerHTML);
-  }
+  };
 
   const onFormSubmitHandler = (event) => {
     event.preventDefault();
@@ -21,12 +23,11 @@ export default function FormAdd({ onAddSubmit }) {
     } else {
       onAddSubmit({ title, body });
     }
-  }
-
+  };
 
   return (
     <div className="base-container flex justify-center items-center min-h-screen">
-      <form className="w-full" onSubmit={onFormSubmitHandler}>
+      <form className={`w-full ${theme}-text`} onSubmit={onFormSubmitHandler}>
         <input
           className="w-full text-5xl font-bold py-2 px-4 mb-2 border-b-0 bg-transparent border-gray-400 outline-none focus:border-[#219BFF] focus:border-b-2"
           type="text"
@@ -36,7 +37,7 @@ export default function FormAdd({ onAddSubmit }) {
         />
 
         <div
-          className="outline-none text-xl border-0 border-gray-400 focus:border-[#219BFF] focus:border-2 focus:text-black rounded-lg p-4 h-96 overflow-y-auto"
+          className="outline-none text-xl border-0 border-gray-400 focus:border-[#219BFF] focus:border-2 rounded-lg p-4 h-96 overflow-y-auto"
           contentEditable="true"
           dangerouslySetInnerHTML={{ __html: body }}
           onBlur={onBodyChangeHandler}
@@ -74,5 +75,5 @@ export default function FormAdd({ onAddSubmit }) {
 }
 
 FormAdd.propTypes = {
-  onAddSubmit: PropTypes.func.isRequired
-}
+  onAddSubmit: PropTypes.func.isRequired,
+};

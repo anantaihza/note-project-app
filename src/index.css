@@ -2,12 +2,47 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+    --background-color: #fff;
+}
+
+* {
+    transition: background 0.3s ease-in;
+}
+
 body {
     font-family: 'Poppins', sans-serif;
+    background-color: var(--background-color);
 }
+
+.bg-theme {
+    background-color: var(--background-color);
+}
+
 .base-container {
     @apply max-w-md md:max-w-3xl lg:max-w-4xl xl:max-w-screen-xl mx-auto;
 }
+
 .bg-acrylic {
-    @apply bg-white backdrop-filter backdrop-blur-lg bg-opacity-30;
+    @apply backdrop-filter backdrop-blur-xl bg-opacity-30;
 }
+
+/* text light theme */
+.light-text {
+    @apply text-gray-700;
+}
+.dark-text {
+    @apply text-white;
+}
+
+[data-theme='dark'] {
+    --background-color: #111729;
+  }
+
+  /* Card theme */
+  .light-solid {
+    @apply bg-white;
+  }
+  .dark-solid {
+    @apply bg-[#20293A];
+  }

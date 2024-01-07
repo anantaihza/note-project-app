@@ -1,8 +1,10 @@
 import PropTypes from "prop-types";
+import { useTheme } from "../contexts/ThemeContext";
 
 export default function InputField({ name, label, type, icon, value, onChange }) {
+  const { theme } = useTheme();
   return (
-    <div className="flex flex-row-reverse items-stretch w-full h-14 rounded-xl overflow-hidden bg-acrylic shadow-md">
+    <div className={`flex flex-row-reverse items-stretch w-full h-14 rounded-xl overflow-hidden bg-acrylic shadow-md ${theme}-solid`}>
       <input
         id={name}
         name={name}
@@ -11,9 +13,9 @@ export default function InputField({ name, label, type, icon, value, onChange })
         aria-label={label}
         value={value}
         onChange={onChange}
-        className="block bg-transparent w-full p-3 text-gray-600 focus:outline-none"
+        className={`block bg-transparent w-full p-3 focus:outline-none ${theme}-text`}
       />
-      <div className="flex items-center pl-3 py-3 text-gray-600">{icon}</div>
+      <div className="flex items-center pl-3 py-3">{icon}</div>
     </div>
   );
 }

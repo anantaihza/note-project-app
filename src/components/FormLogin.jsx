@@ -6,10 +6,13 @@ import { LuMail } from "react-icons/lu";
 import { BiKey } from "react-icons/bi";
 import InputField from "./InputField";
 import ButtonSubmit from "./ButtonSubmit";
+import { useTheme } from "../contexts/ThemeContext";
+
 
 export default function FormLogin({ onLogin }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const { theme } = useTheme();
 
   const onEmailChange = (event) => {
     setEmail(event.target.value);
@@ -26,14 +29,14 @@ export default function FormLogin({ onLogin }) {
 
   return (
     <>
-      <div className=" flex flex-col justify-center items-stretch min-h-screen w-full sm:px-4 md:pl-14 xl:pl-36">
+      <div className={`flex flex-col justify-center items-stretch min-h-screen w-full sm:px-4 md:pl-14 xl:pl-36 ${theme}-text`}>
         <h1 className="text-5xl font-bold mb-20 text-center">Login <br /> Catatan App</h1>
         <form className="flex flex-col gap-6" onSubmit={onFormSubmitHandler}>
           <InputField
             name="email"
             label="Email"
             type="email"
-            icon={<LuMail size="1rem" className="text-gray-400" />}
+            icon={<LuMail size="1rem" className={`${theme}-text`} />}
             value={email}
             onChange={onEmailChange}
           />
@@ -41,7 +44,7 @@ export default function FormLogin({ onLogin }) {
             name="password"
             label="Password"
             type="password"
-            icon={<BiKey size="1rem" className="text-gray-400" />}
+            icon={<BiKey size="1rem" className={`${theme}-text`} />}
             value={password}
             onChange={onPasswordChange}
           />

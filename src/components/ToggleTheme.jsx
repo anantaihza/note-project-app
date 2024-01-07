@@ -1,14 +1,13 @@
-import PropTypes from "prop-types";
 import { IoSunnyOutline, IoMoonOutline } from "react-icons/io5";
+import { useTheme } from "../contexts/ThemeContext";
 
-export default function ToggleTheme({ theme }) {
+export default function ToggleTheme() {
+  const {theme, toggleTheme } = useTheme();
+  console.log(theme)
+
   return (
-    <button>
-      {theme === "light" ? <IoSunnyOutline /> : <IoMoonOutline />}
+    <button className={`${theme}-text`} onClick={toggleTheme}>
+      {theme === "light" ? <IoMoonOutline /> : <IoSunnyOutline />}
     </button>
   );
-}
-
-ToggleTheme.propTypes = {
-  theme: PropTypes.string.isRequired,
 }

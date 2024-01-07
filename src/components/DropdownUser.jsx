@@ -1,11 +1,13 @@
 import { useState } from "react";
 import PropTypes from "prop-types";
-import { HiOutlineUserCircle } from "react-icons/hi2";
 import { MdLogout } from "react-icons/md";
 import { IoIosArrowDown } from "react-icons/io";
+import { HiOutlineUserCircle } from "react-icons/hi2";
+import { useTheme } from "../contexts/ThemeContext";
 
 export default function DropdownAkun({ logout }) {
   const [isOpen, setIsOpen] = useState(false);
+  const { theme } = useTheme();
 
   const toggleDropdown = () => {
     setIsOpen(!isOpen);
@@ -15,7 +17,7 @@ export default function DropdownAkun({ logout }) {
     <div className="relative inline-block text-left">
       <button
         type="button"
-        className="flex items-center focus:outline-none"
+        className={`flex items-center focus:outline-none ${theme}-text`} 
         onClick={toggleDropdown}
       >
         {isOpen ? (
@@ -25,10 +27,10 @@ export default function DropdownAkun({ logout }) {
         )}
       </button>
       {isOpen && (
-        <div className="origin-top-right absolute right-0 mt-2 w-36 rounded-md shadow-lg bg-acrylic ring-1 ring-black ring-opacity-5">
+        <div className={`origin-top-right absolute right-0 mt-2 w-36 rounded-md shadow-lg bg-acrylic ${theme}-solid`}>
           <div className="py-1">
             <button
-              className="block px-8 py-2 text-sm text-gray-700 hover:bg-gray-100"
+              className={`block px-8 py-2 text-sm hover:${theme}-solid ${theme}-text`} 
               onClick={logout}
             >
               <MdLogout className="inline" /> Sign out

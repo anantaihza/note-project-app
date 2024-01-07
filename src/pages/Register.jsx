@@ -2,6 +2,7 @@ import Decoration from "../components/Decoration";
 import FormRegister from "../components/FormRegister";
 import { register } from "../utils/network-data";
 import { useNavigate } from "react-router-dom";
+import Navigations from "../components/Navigations";
 
 export default function Register() {
   const navigate = useNavigate();
@@ -15,6 +16,7 @@ export default function Register() {
   };
   return (
     <div className="relative overflow-hidden min-h-screen">
+      <Navigations />
       <div className="base-container flex">
         <img
           src="/register.svg"
