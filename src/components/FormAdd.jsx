@@ -4,20 +4,17 @@ import "../styles/components/form-add.css";
 import { useTheme } from "../contexts/ThemeContext";
 import { useLocale } from "../contexts/LocaleContext";
 import { formAdd, btnAdd } from "../utils/contentLocale";
+import useInput from "../hooks/useInput";
 
 export default function FormAdd({ onAddSubmit }) {
-  const { locale } = useLocale();
-  const [title, setTitle] = useState("");
-  const [body, setBody] = useState(formAdd[locale].body);
   const { theme } = useTheme();
+  const { locale } = useLocale();
+  const [title, onTitleChangeHandler] = useInput("");
+  const [body, setBody] = useState(formAdd[locale].body);
 
   useEffect(() => {
     setBody(formAdd[locale].body);
   }, [locale]);
-
-  const onTitleChangeHandler = (event) => {
-    setTitle(event.target.value);
-  };
 
   const onBodyChangeHandler = (event) => {
     setBody(event.target.innerHTML);

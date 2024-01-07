@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 
@@ -9,20 +8,13 @@ import ButtonSubmit from "./ButtonSubmit";
 import { useTheme } from "../contexts/ThemeContext";
 import { login } from "../utils/contentLocale";
 import { useLocale } from "../contexts/LocaleContext";
+import useInput from "../hooks/useInput";
 
 export default function FormLogin({ onLogin }) {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, onEmailChange] = useInput("");
+  const [password, onPasswordChange] = useInput("");
   const { theme } = useTheme();
   const { locale } = useLocale();
-
-  const onEmailChange = (event) => {
-    setEmail(event.target.value);
-  };
-
-  const onPasswordChange = (event) => {
-    setPassword(event.target.value);
-  };
 
   const onFormSubmitHandler = (event) => {
     event.preventDefault();

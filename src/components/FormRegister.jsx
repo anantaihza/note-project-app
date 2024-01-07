@@ -1,5 +1,4 @@
 import PropTypes from "prop-types";
-import { useState } from "react";
 import { LuMail } from "react-icons/lu";
 import { BiKey } from "react-icons/bi";
 import { FaRegAddressCard } from "react-icons/fa";
@@ -9,30 +8,15 @@ import ButtonSubmit from "./ButtonSubmit";
 import { useTheme } from "../contexts/ThemeContext";
 import { useLocale } from "../contexts/LocaleContext";
 import { register } from "../utils/contentLocale";
+import useInput from "../hooks/useInput";
 
 export default function FormRegister({ onRegister }) {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [passwordConfirm, setPasswordConfirm] = useState("");
+  const [name, onNameChange] = useInput("");
+  const [email, onEmailChange] = useInput("");
+  const [password, onPasswordChange] = useInput("");
+  const [passwordConfirm, onPasswordConfirmChange] = useInput("");
   const { theme } = useTheme();
   const { locale } = useLocale();
-
-  const onNameChange = (event) => {
-    setName(event.target.value);
-  };
-
-  const onEmailChange = (event) => {
-    setEmail(event.target.value);
-  };
-
-  const onPasswordChange = (event) => {
-    setPassword(event.target.value);
-  };
-
-  const onPasswordConfirmChange = (event) => {
-    setPasswordConfirm(event.target.value);
-  };
 
   const onFormSubmitHandler = (event) => {
     event.preventDefault();
