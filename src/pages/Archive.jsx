@@ -1,11 +1,6 @@
 import { useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import useNotes from "../hooks/useNotes";
-// import {
-//   getActiveNotes,
-//   getArchivedNotes,
-//   searchTitleNotes,
-// } from "../utils/local-data";
 import { searchTitleNotes } from "../utils/search";
 
 import PropTypes from "prop-types";
@@ -27,7 +22,7 @@ export default function Archive({ username, logout }) {
   };
 
   const [search, setSearch] = useState(title || "");
-  const { archiveNotes, activeCount, archiveCount } = useNotes();
+  const { archiveNotes, activeCount, archiveCount, archiveLoading } = useNotes();
 
   const searchResult = searchTitleNotes(search, archiveNotes);
 
@@ -43,7 +38,7 @@ export default function Archive({ username, logout }) {
         />
         <TitleNote statusNote="arsip" />
         <Search setSearch={setSearch} onParam={changeSearchParam} />
-        <ListCard notes={searchResult} />
+        <ListCard notes={searchResult} isLoading={archiveLoading} />
 
         <Decoration position="left" />
         <Decoration position="right" />

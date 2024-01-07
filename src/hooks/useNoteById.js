@@ -3,11 +3,13 @@ import { useEffect, useState } from "react";
 
 const useNoteById = (idNote) => {
     const [note, setNote] = useState({});
+    const [loading, setLoading] = useState(true);
 
     const getNoteById = async (id) => {
         const { error, data } = await getNote(id);
         if (!error) {
             setNote(data);
+            setLoading(false);
         }
     }
 
@@ -15,7 +17,7 @@ const useNoteById = (idNote) => {
         getNoteById(idNote);
     }, [idNote]);
 
-    return { note };
+    return { note, loading };
 }
 
 export default useNoteById;

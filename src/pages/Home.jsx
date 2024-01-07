@@ -23,7 +23,7 @@ export default function Home({ username ,logout }) {
 
   const [search, setSearch] = useState(title || "");
 
-  const { activeNotes, activeCount, archiveCount } = useNotes();
+  const { activeNotes, activeCount, archiveCount, activeLoading } = useNotes();
   const searchResult = searchTitleNotes(search, activeNotes);
 
   return (
@@ -38,7 +38,7 @@ export default function Home({ username ,logout }) {
         />
         <TitleNote statusNote="aktif" />
         <Search setSearch={setSearch} onParam={changeSearchParam} />
-        <ListCard notes={searchResult} />
+        <ListCard notes={searchResult} isLoading={activeLoading} />
 
         <Decoration position="right" />
         <Decoration position="left" />

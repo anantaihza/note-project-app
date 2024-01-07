@@ -1,9 +1,5 @@
 import { useParams, useNavigate } from "react-router-dom";
-import {
-  deleteNote,
-  archiveNote,
-  unarchiveNote,
-} from "../utils/network-data";
+import { deleteNote, archiveNote, unarchiveNote } from "../utils/network-data";
 import useNoteById from "../hooks/useNoteById";
 
 import PropTypes from "prop-types";
@@ -11,11 +7,12 @@ import Navbar from "../components/Navbar";
 import Decoration from "../components/Decoration";
 import ButtonList from "../components/Details/ButtonList";
 import ContentDetail from "../components/Details/ContentDetail";
+import SkeletonDetailNote from "../components/Skeleton/SkeletonDetailNote";
 
 export default function DetailNote({ logout }) {
   const { id } = useParams();
   const navigate = useNavigate();
-  const { note } = useNoteById(id);
+  const { note, loading } = useNoteById(id);
 
   const typeButton = note.archived ? "arsip" : "aktif";
 
@@ -38,15 +35,19 @@ export default function DetailNote({ logout }) {
     <>
       <Navbar logout={logout} />
       <div className="relative overflow-hidden min-h-screen">
-        <div className="flex justify-center items-center min-h-screen">
-          <ContentDetail note={note} />
-          <ButtonList
-            typeBtn={typeButton}
-            onArchive={handleArchive}
-            onDelete={handleDelete}
-            onUnarchive={handleUnarchive}
-          />
-        </div>
+        {loading ? (
+          <SkeletonDetailNote />
+        ) : (
+          <div className="flex justify-center items-center min-h-screen">
+            <ContentDetail note={note} />
+            <ButtonList
+              typeBtn={typeButton}
+              onArchive={handleArchive}
+              onDelete={handleDelete}
+              onUnarchive={handleUnarchive}
+            />
+          </div>
+        )}
 
         <Decoration position="right" />
         <Decoration position="left" />

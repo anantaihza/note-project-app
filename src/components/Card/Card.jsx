@@ -6,6 +6,7 @@ import { useTheme } from "../../contexts/ThemeContext";
 
 export default function Card({ note }) {
   const { theme } = useTheme();
+  
   return (
     <div className={`bg-acrylic shadow-lg p-8 rounded-lg h-60 ${theme}-solid`}>
       <p className="text-sm text-[#219BFF] mb-1">
