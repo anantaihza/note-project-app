@@ -4,10 +4,13 @@ import { MdLogout } from "react-icons/md";
 import { IoIosArrowDown } from "react-icons/io";
 import { HiOutlineUserCircle } from "react-icons/hi2";
 import { useTheme } from "../contexts/ThemeContext";
+import { useLocale } from "../contexts/LocaleContext";
+import { navbar } from "../utils/contentLocale";
 
 export default function DropdownAkun({ logout }) {
   const [isOpen, setIsOpen] = useState(false);
   const { theme } = useTheme();
+  const {locale} = useLocale();
 
   const toggleDropdown = () => {
     setIsOpen(!isOpen);
@@ -33,7 +36,7 @@ export default function DropdownAkun({ logout }) {
               className={`block px-8 py-2 text-sm hover:${theme}-solid ${theme}-text`} 
               onClick={logout}
             >
-              <MdLogout className="inline" /> Sign out
+              <MdLogout className="inline" /> {navbar[locale].logout}
             </button>
           </div>
         </div>

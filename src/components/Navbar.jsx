@@ -5,9 +5,12 @@ import ToggleLocale from "./ToggleLocale";
 import DropdownAkun from "./DropdownUser";
 import "../styles/components/navbar.css";
 import { useTheme } from "../contexts/ThemeContext";
+import { useLocale } from "../contexts/LocaleContext";
+import { navbar } from "../utils/contentLocale";
 
 export default function Navbar({ logout }) {
   const { theme } = useTheme();
+  const {locale} = useLocale();
   return (
     <nav className="fixed-top bg-acrylic shadow-sm">
       <div className="base-container flex items-center justify-between">
@@ -16,12 +19,12 @@ export default function Navbar({ logout }) {
             Notes
           </Link>
           <div className={`flex space-x-4 ${theme}-text`}>{/* sini */}
-            <Link to="/">Home</Link>
-            <Link to="/archive">Archive</Link>
+            <Link to="/">{navbar[locale].home}</Link>
+            <Link to="/archive">{navbar[locale].archive}</Link>
           </div>
         </div>
         <div className="flex items-center gap-4">
-          <ToggleLocale locale="id" />
+          <ToggleLocale />
           <ToggleTheme />{/* sini */}
           <div className={`${theme}-text`}> | </div>{/* sini */}
           <DropdownAkun logout={logout} />

@@ -7,6 +7,8 @@ import { MdPassword } from "react-icons/md";
 import InputField from "./InputField";
 import ButtonSubmit from "./ButtonSubmit";
 import { useTheme } from "../contexts/ThemeContext";
+import { useLocale } from "../contexts/LocaleContext";
+import { register } from "../utils/contentLocale";
 
 export default function FormRegister({ onRegister }) {
   const [name, setName] = useState("");
@@ -14,6 +16,7 @@ export default function FormRegister({ onRegister }) {
   const [password, setPassword] = useState("");
   const [passwordConfirm, setPasswordConfirm] = useState("");
   const { theme } = useTheme();
+  const { locale } = useLocale();
 
   const onNameChange = (event) => {
     setName(event.target.value);
@@ -42,16 +45,18 @@ export default function FormRegister({ onRegister }) {
 
   return (
     <>
-      <div className={`flex flex-col justify-center items-stretch min-h-screen w-full sm:px-4 md:pl-14 xl:pl-36 ${theme}-text`}>
+      <div
+        className={`flex flex-col justify-center items-stretch min-h-screen w-full sm:px-4 md:pl-14 xl:pl-36 ${theme}-text`}
+      >
         <h1 className="text-5xl font-bold mb-20 text-center">
           {" "}
-          Registrasi
-          <br /> Akun Catatan
+          {register[locale].header}
+          <br /> {register[locale].subHeader}
         </h1>
         <form className="flex flex-col gap-6" onSubmit={onFormSubmitHandler}>
           <InputField
             name="name"
-            label="Nama"
+            label={register[locale].fieldName}
             type="text"
             icon={<FaRegAddressCard size="1rem" className="text-gray-400" />}
             value={name}
@@ -75,14 +80,14 @@ export default function FormRegister({ onRegister }) {
           />
           <InputField
             name="password-confirm"
-            label="Konfirmasi Password"
+            label={register[locale].fieldKonfirm}
             type="password"
             icon={<MdPassword size="1rem" className="text-gray-400" />}
             value={passwordConfirm}
             onChange={onPasswordConfirmChange}
           />
 
-          <ButtonSubmit btnName="Registrasi" />
+          <ButtonSubmit btnName={register[locale].btnRegister} />
         </form>
       </div>
     </>

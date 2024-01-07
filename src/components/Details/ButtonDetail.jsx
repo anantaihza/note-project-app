@@ -1,7 +1,11 @@
 import "../../styles/components/button-detail.css";
 import PropTypes from "prop-types";
+import { useLocale } from "../../contexts/LocaleContext";
+import { btnDelete, btnArchive, btnActive } from "../../utils/contentLocale";
 
 export default function ButtonDetail({ typeBtn, onAction }) {
+  const { locale } = useLocale();
+
   if (typeBtn === "arsipkan") {
     return (
       <button className="btn bg-[#219BFF] text-white" onClick={onAction}>
@@ -20,7 +24,7 @@ export default function ButtonDetail({ typeBtn, onAction }) {
               d="m4.5 12.75 6 6 9-13.5"
             />
           </svg>
-          <span className="desc-btn">Arsipkan</span>
+          <span className="desc-btn">{btnArchive[locale].archive}</span>
         </div>
       </button>
     );
@@ -43,7 +47,7 @@ export default function ButtonDetail({ typeBtn, onAction }) {
             />
           </svg>
 
-          <span className="desc-btn">Hapus</span>
+          <span className="desc-btn">{btnDelete[locale].delete}</span>
         </div>
       </button>
     );
@@ -66,7 +70,7 @@ export default function ButtonDetail({ typeBtn, onAction }) {
             />
           </svg>
 
-          <span className="desc-btn">Aktifkan</span>
+          <span className="desc-btn">{btnActive[locale].active}</span>
         </div>
       </button>
     );
@@ -76,4 +80,4 @@ export default function ButtonDetail({ typeBtn, onAction }) {
 ButtonDetail.propTypes = {
   typeBtn: PropTypes.oneOf(["arsipkan", "hapus", "aktifkan"]).isRequired,
   onAction: PropTypes.func.isRequired,
-}
+};

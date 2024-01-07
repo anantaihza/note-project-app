@@ -1,12 +1,19 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import "../styles/components/form-add.css";
 import { useTheme } from "../contexts/ThemeContext";
+import { useLocale } from "../contexts/LocaleContext";
+import { formAdd, btnAdd } from "../utils/contentLocale";
 
 export default function FormAdd({ onAddSubmit }) {
+  const { locale } = useLocale();
   const [title, setTitle] = useState("");
-  const [body, setBody] = useState("Apa yang kamu fikirkan?");
+  const [body, setBody] = useState(formAdd[locale].body);
   const { theme } = useTheme();
+
+  useEffect(() => {
+    setBody(formAdd[locale].body);
+  }, [locale]);
 
   const onTitleChangeHandler = (event) => {
     setTitle(event.target.value);
@@ -18,7 +25,10 @@ export default function FormAdd({ onAddSubmit }) {
 
   const onFormSubmitHandler = (event) => {
     event.preventDefault();
-    if (body === "Apa yang kamu fikirkan?") {
+    if (
+      body === "Apa yang kamu fikirkan?" ||
+      body === "What are you thinking?"
+    ) {
       onAddSubmit({ title, body: "(Tidak ada catatan)" });
     } else {
       onAddSubmit({ title, body });
@@ -31,7 +41,7 @@ export default function FormAdd({ onAddSubmit }) {
         <input
           className="w-full text-5xl font-bold py-2 px-4 mb-2 border-b-0 bg-transparent border-gray-400 outline-none focus:border-[#219BFF] focus:border-b-2"
           type="text"
-          placeholder="Tuliskan Judul"
+          placeholder={formAdd[locale].title}
           value={title}
           onChange={onTitleChangeHandler}
         />
@@ -65,7 +75,7 @@ export default function FormAdd({ onAddSubmit }) {
                 />
               </svg>
 
-              <span className="desc-btn">Simpan</span>
+              <span className="desc-btn">{btnAdd[locale].save}</span>
             </div>
           </button>
         </div>

@@ -1,26 +1,23 @@
-import PropTypes from "prop-types";
+import { useLocale } from "../contexts/LocaleContext";
 
-export default function ToggleLocale({ locale }) {
+export default function ToggleLocale() {
+  const { locale, toggleLocale } = useLocale();
   return (
-    <button>
+    <button onClick={toggleLocale}>
       {locale === "id" ? (
         <img
-          src="/En.png"
-          alt="https://www.flaticon.com/free-icons/united-states"
+          src="/In.png"
+          alt="https://www.flaticon.com/free-icons/indonesia"
           className="w-[17px]"
         />
       ) : (
         <img
-          src="/In.png"
-          alt="https://www.flaticon.com/free-icons/indonesia"
+          src="/En.png"
+          alt="https://www.flaticon.com/free-icons/united-states"
           className="w-[17px]"
         />
       )}
     </button>
   );
 }
-
-ToggleLocale.propTypes = {
-  locale: PropTypes.oneOf(["id", "en"]).isRequired,
-};
 

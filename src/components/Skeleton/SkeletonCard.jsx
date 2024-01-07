@@ -8,10 +8,10 @@ export default function SkeletonCard() {
         Loading Date...
       </p>
       <div className="animate-pulse">
-        <div className="text-xl font-bold bg-gray-400 h-6 w-3/4 mb-2"></div>
-        <div className="bg-gray-400 h-6 w-2/3 mb-4"></div>
+        <div className="text-xl font-bold bg-gray-200 h-6 w-3/4 mb-2"></div>
+        <div className="bg-gray-200 h-6 w-2/3 mb-4"></div>
       </div>
-      <p className="line-clamp-4 mt-4 text-sm bg-gray-400 h-8 animate-pulse"></p>
+      <p className="line-clamp-4 mt-4 text-sm bg-gray-200 h-8 animate-pulse"></p>
     </div>
   )
 }

@@ -7,12 +7,14 @@ import { BiKey } from "react-icons/bi";
 import InputField from "./InputField";
 import ButtonSubmit from "./ButtonSubmit";
 import { useTheme } from "../contexts/ThemeContext";
-
+import { login } from "../utils/contentLocale";
+import { useLocale } from "../contexts/LocaleContext";
 
 export default function FormLogin({ onLogin }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const { theme } = useTheme();
+  const { locale } = useLocale();
 
   const onEmailChange = (event) => {
     setEmail(event.target.value);
@@ -24,13 +26,17 @@ export default function FormLogin({ onLogin }) {
 
   const onFormSubmitHandler = (event) => {
     event.preventDefault();
-    onLogin({ email, password })
-  }
+    onLogin({ email, password });
+  };
 
   return (
     <>
-      <div className={`flex flex-col justify-center items-stretch min-h-screen w-full sm:px-4 md:pl-14 xl:pl-36 ${theme}-text`}>
-        <h1 className="text-5xl font-bold mb-20 text-center">Login <br /> Catatan App</h1>
+      <div
+        className={`flex flex-col justify-center items-stretch min-h-screen w-full sm:px-4 md:pl-14 xl:pl-36 ${theme}-text`}
+      >
+        <h1 className="text-5xl font-bold mb-20 text-center">
+          Login <br /> {login[locale].header}
+        </h1>
         <form className="flex flex-col gap-6" onSubmit={onFormSubmitHandler}>
           <InputField
             name="email"
@@ -53,7 +59,7 @@ export default function FormLogin({ onLogin }) {
         </form>
         <br />
         <p className="text-center">
-          Belum punya akun?{" "}
+          {login[locale].register}{" "}
           <Link
             to={"/register"}
             className="text-[#219BFF] hover:text-[#20293A]"
@@ -68,4 +74,4 @@ export default function FormLogin({ onLogin }) {
 
 FormLogin.propTypes = {
   onLogin: PropTypes.func.isRequired,
-}
+};
