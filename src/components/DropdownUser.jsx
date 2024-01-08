@@ -7,7 +7,7 @@ import { useTheme } from "../contexts/ThemeContext";
 import { useLocale } from "../contexts/LocaleContext";
 import { navbar } from "../utils/contentLocale";
 
-export default function DropdownAkun({ logout }) {
+export default function DropdownUser({ logout }) {
   const [isOpen, setIsOpen] = useState(false);
   const { theme } = useTheme();
   const {locale} = useLocale();
@@ -45,6 +45,6 @@ export default function DropdownAkun({ logout }) {
   );
 }
 
-DropdownAkun.propTypes = {
+DropdownUser.propTypes = {
   logout: PropTypes.func.isRequired,
 };

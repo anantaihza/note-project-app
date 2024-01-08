@@ -1,9 +1,9 @@
+import { addNote } from "../utils/network-data";
 import { useNavigate } from "react-router-dom";
+import PropTypes from "prop-types";
 import Navbar from "../components/Navbar";
 import FormAdd from "../components/FormAdd";
 import Decoration from "../components/Decoration";
-import PropTypes from "prop-types";
-import { addNote } from "../utils/network-data";
 
 export default function AddNote({ logout }) {
   const navigate = useNavigate();

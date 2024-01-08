@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { useSearchParams } from "react-router-dom";
 import useNotes from "../hooks/useNotes";
+import { useSearchParams } from "react-router-dom";
 import { searchTitleNotes } from "../utils/search";
 
 import PropTypes from "prop-types";
@@ -9,8 +9,8 @@ import Search from "../components/Search";
 import Decoration from "../components/Decoration";
 import ListCard from "../components/Card/ListCard";
 import TitleNote from "../components/Title/TitleNote";
-import Summary from "../components/SummaryCount/Summary";
 import TitleUser from "../components/Title/TitleUser";
+import Summary from "../components/SummaryCount/Summary";
 
 export default function Archive({ username, logout }) {
   const [searchParam, setSearchParam] = useSearchParams();

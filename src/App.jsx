@@ -1,4 +1,6 @@
+import { useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
+import { useTheme } from "./contexts/ThemeContext";
 import { putAccessToken } from "./utils/network-data";
 
 import Home from "./pages/Home";
@@ -9,8 +11,6 @@ import NotFound from "./pages/NotFound";
 import Register from "./pages/Register";
 import DetailNote from "./pages/DetailNote";
 import useFetchUser from "./hooks/useFetchUser";
-import { useEffect } from "react";
-import { useTheme } from "./contexts/ThemeContext";
 
 function App() {
   const { theme } = useTheme();

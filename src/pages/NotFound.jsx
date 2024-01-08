@@ -1,6 +1,6 @@
+import PropTypes from "prop-types";
 import Navbar from "../components/Navbar";
 import Decoration from "../components/Decoration";
-import PropTypes from "prop-types";
 
 export default function NotFound({ logout }) {
   return (

@@ -1,5 +1,5 @@
-import { getActiveNotes, getArchivedNotes } from "../utils/network-data";
 import { useEffect, useState } from "react";
+import { getActiveNotes, getArchivedNotes } from "../utils/network-data";
 
 const useNotes = () => {
   const [activeNotes, setActiveNotes] = useState([]);

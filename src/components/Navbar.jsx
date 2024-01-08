@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import ToggleTheme from "./ToggleTheme";
 import ToggleLocale from "./ToggleLocale";
-import DropdownAkun from "./DropdownUser";
+import DropdownUser from "./DropdownUser";
 import "../styles/components/navbar.css";
 import { useTheme } from "../contexts/ThemeContext";
 import { useLocale } from "../contexts/LocaleContext";
@@ -27,7 +27,7 @@ export default function Navbar({ logout }) {
           <ToggleLocale />
           <ToggleTheme />{/* sini */}
           <div className={`${theme}-text`}> | </div>{/* sini */}
-          <DropdownAkun logout={logout} />
+          <DropdownUser logout={logout} />
         </div>
       </div>
     </nav>

@@ -1,10 +1,10 @@
-import Decoration from "../components/Decoration";
-import FormLogin from "../components/FormLogin";
-import Navigations from "../components/Navigations";
-import { login } from "../utils/network-data";
 import PropTypes from "prop-types";
-
+import { login } from "../utils/network-data";
 import { useNavigate } from "react-router-dom";
+import FormLogin from "../components/FormLogin";
+import Decoration from "../components/Decoration";
+import Navigations from "../components/Navigations";
+
 
 export default function Login({ loginSuccess }) {
   const navigate = useNavigate();

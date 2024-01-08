@@ -1,8 +1,8 @@
-import Decoration from "../components/Decoration";
-import FormRegister from "../components/FormRegister";
-import { register } from "../utils/network-data";
 import { useNavigate } from "react-router-dom";
+import { register } from "../utils/network-data";
+import Decoration from "../components/Decoration";
 import Navigations from "../components/Navigations";
+import FormRegister from "../components/FormRegister";
 
 export default function Register() {
   const navigate = useNavigate();
